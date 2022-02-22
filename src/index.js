@@ -1,7 +1,5 @@
-//@ts-checks
 /**
  * Se requieren las funciones definidas en utils
- * @type{function}
  */
 const { sharesPricesAndAdder, comparativeObjectiveAmount, buyingOrSellingAssets } = require('./utils/portafolio.functions');
 /**
