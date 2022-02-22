@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jsdoc": "^3.6.10",
     "node-fetch": "^2.6.7"
   }
 }

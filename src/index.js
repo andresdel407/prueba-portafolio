@@ -1,5 +1,13 @@
-const { totalAmountAdder, comparativeObjectiveAmount, buyingOrSellingAssets } = require('./utils/portafolio.functions');
-
+//@ts-checks
+/**
+ * Se requieren las funciones definidas en utils
+ * @type{function}
+ */
+const { sharesPricesAndAdder, comparativeObjectiveAmount, buyingOrSellingAssets } = require('./utils/portafolio.functions');
+/**
+ * Definición de portafolio escenario 1 
+ * @type {{name: string, targetPortafolio: number, assets: Array<number|string> }}
+ */
 const miPortafolio1 = {
     name: "mis inversiones",
     targetPortfolio: 6,
@@ -14,6 +22,10 @@ const miPortafolio1 = {
         }
     ]
 };
+/**
+ * Definición de portafolio objetivo escenario 1 
+ * @type {{name: string, assets: Array<number|string> }}
+ */
 const portafolioObj1 ={
     name: "targetPortfolio6",
     assets: [
@@ -27,6 +39,10 @@ const portafolioObj1 ={
         }
     ]
 };
+/**
+ * Definición de portafolio escenario 2
+ * @type {{name: string, targetPortafolio: number, assets: Array<number|string> }}
+ */
 const miPortafolio2 = {
     name: "mis inversiones",
     targetPortfolio: 10,
@@ -41,6 +57,10 @@ const miPortafolio2 = {
         }
     ]
 };
+/**
+ * Definición de portafolio objetivo esenario 2
+ * @type {{name: string, assets: Array<number|string> }}
+ */
 const portafolioObj2 ={
     name: "targetPortfolio10",
     assets: [
@@ -58,14 +78,22 @@ const portafolioObj2 ={
         }
     ]
 };
+
+
+/**
+ * Ejecución del código
+ */
 (async ()=> {
-    try {    
-        console.log(miPortafolio2)
-        const totalAmount = await totalAmountAdder(miPortafolio2);
-        comparativeObjectiveAmount(portafolioObj2 ,miPortafolio2, totalAmount);
-        console.log(miPortafolio2);
-        await buyingOrSellingAssets(miPortafolio2,portafolioObj2,totalAmount);
-        console.log(miPortafolio2);
+    try {
+        console.log("Portafolio Incial");   
+        console.log(miPortafolio1);
+        const totalAmount = await sharesPricesAndAdder(miPortafolio1);
+        const modifications = comparativeObjectiveAmount(portafolioObj1 ,miPortafolio1, totalAmount);
+        await buyingOrSellingAssets(miPortafolio1,portafolioObj1,totalAmount, modifications);
+        console.log("Portafolio Final");
+        console.log(miPortafolio1);
+        console.log("Modificaciones");
+        console.log(modifications)
     } catch (error) {
         console.log(error);
     }
